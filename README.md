@@ -26,7 +26,7 @@
 * F) Call your function with the argument "sillyprojection" and verify your assertion cause the code to crash
 # `Problem2_MoreFunctions.py`
  Put all the code inside a function, with the name of your choice
-* A) put all of this code into a function that takes a few arguments, namely the marker, markersize, lignstyle and color call this function plot_quasars
+* A) put all of this code into a function that takes a few arguments, namely the marker, markersize, linestyle and color call this function plot_quasars
 * B)  have all the arguments be default arguments set to the defaults that they are within plot currently.
 * C) change the name of the figure depending on the combination of arguments given so that with each combination a new figure name is produced
 * D) Try this out with many different combinations of arguments. Research the plot command to try to change the marker, markersize, linestyle, etc. appropriately
