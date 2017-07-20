@@ -15,6 +15,7 @@
 #   To report a bug or issue, use the following forum:
 #    https://groups.google.com/forum/#!forum/astroml-general
 from matplotlib import pyplot as plt
+import matplotlib
 from astroML.datasets import fetch_dr7_quasar
 
 #----------------------------------------------------------------------
@@ -35,17 +36,22 @@ data = data[:10000]
 r = data['mag_r']
 i = data['mag_i']
 z = data['redshift']
+def plot_quasars(marker='.', markersize=2, linestyle='none', color='black'):
+    #------------------------------------------------------------
+    # Plot the quasar data
+    fig, ax = plt.subplots(figsize=(5, 3.75))
+    ax.plot(z, r - i, marker=marker, markersize=markersize, linestyle=linestyle, color=color)
 
-#------------------------------------------------------------
-# Plot the quasar data
-fig, ax = plt.subplots(figsize=(5, 3.75))
-ax.plot(z, r - i, marker='.', markersize=2, linestyle='none', color='black')
+    ax.set_xlim(0, 5)
+    ax.set_ylim(-0.5, 1.0)
 
-ax.set_xlim(0, 5)
-ax.set_ylim(-0.5, 1.0)
-
-ax.set_xlabel(r'${\rm redshift}$')
-ax.set_ylabel(r'${\rm r-i}$')
-fig.savefig("problem2.png")
+    ax.set_xlabel(r'${\rm redshift}$')
+    ax.set_ylabel(r'${\rm r-i}$')
+    fig.savefig("problem2-"+"marker:"+str(marker)+"-"+"markersize:"+str(markersize)+"-"+"linestyle:"+str(linestyle)+"-"+"color:"+str(color)+".png")
+    #help(ax.plot)
 
 
+plot_quasars()
+plot_quasars(marker="H", linestyle="none", color=(0, 1, 1), markersize=5)
+
+help(matplotlib.markers)
