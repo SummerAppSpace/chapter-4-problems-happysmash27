@@ -51,7 +51,7 @@ def plot_quasars(marker='.', markersize=2, linestyle='none', color='black'):
     #help(ax.plot)
 
 
-plot_quasars()
-plot_quasars(marker="H", linestyle="none", color=(0, 1, 1), markersize=5)
+#plot_quasars()
+#plot_quasars(marker="H", linestyle="none", color=(0, 1, 1), markersize=5)
 
-help(matplotlib.markers)
+#help(matplotlib.markers)

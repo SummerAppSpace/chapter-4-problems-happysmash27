@@ -34,34 +34,54 @@ from astroML.datasets import fetch_wmap_temperatures
 from astroML.plotting import setup_text_plots
 setup_text_plots(fontsize=8, usetex=True)
 
-#------------------------------------------------------------
-# First plot an example pixellization
+def plot(nomo=None):
+    print("Skribas kun nomo "+str(nomo)+".")
+    #------------------------------------------------------------
+    # First plot an example pixellization
 
-# Prepare the healpix pixels
-NSIDE = 4
-m = np.arange(hp.nside2npix(NSIDE))
-print("number of pixels:", len(m))
+    # Prepare the healpix pixels
+    NSIDE = 4
+    m = np.arange(hp.nside2npix(NSIDE))
+    print("number of pixels:", len(m))
 
-# Plot the pixelization
-fig = plt.figure(1, figsize=(5, 3.75))
-hp.mollview(m, nest=True, title="HEALPix Pixels (Mollweide)", fig=1)
+    # Plot the pixelization
+    fig = plt.figure(1, figsize=(5, 3.75))
 
-# remove colorbar: we don't need it for this plot
-fig.delaxes(fig.axes[1])
+    if (nomo and nomo != None):
+        nuntempnomo = nomo
+    else:
+        nuntempnomo = "HEALPix Pixels (Mollweide)"
+    hp.mollview(m, nest=True, title=nuntempnomo, fig=1)
 
-#------------------------------------------------------------
-# Next plot the wmap pixellization
-wmap_unmasked = fetch_wmap_temperatures(masked=False)
+    # remove colorbar: we don't need it for this plot
+    fig.delaxes(fig.axes[1])
 
-# plot the unmasked map
-fig = plt.figure(2, figsize=(5, 3.75))
-hp.mollview(wmap_unmasked, min=-1, max=1, title='Raw WMAP data',
-            unit=r'$\Delta$T (mK)', fig=2)
-fig.axes[1].texts[0].set_fontsize(8)
+    #------------------------------------------------------------
+    # Next plot the wmap pixellization
+    wmap_unmasked = fetch_wmap_temperatures(masked=False)
 
-fig.savefig("problem4.png")
+    # plot the unmasked map
+    fig = plt.figure(2, figsize=(5, 3.75))
+    #plt.subplot(1,2,2)
+    if (nomo and nomo != None):
+        nuntempnomo = nomo
+    else:
+        nuntempnomo = 'Raw WMAP data'
+    hp.mollview(wmap_unmasked, min=-1, max=1, title=nuntempnomo,
+                unit=r'$\Delta$T (mK)', fig=2)
+    fig.axes[1].texts[0].set_fontsize(8)
+    #fig.suptitle("Title McTitleFace")
+    #help(fig)
+    #help(hp.mollview)
+    #help(plt.figure)
+
+    fig.savefig("problem4.png")
 
 if __name__=='__main__':
-    # your code here
-    pass
+    import sys
+    if (sys.argv[1]):
+        print(sys.argv[1])
+        plot(sys.argv[1])
+    else:
+        plot()
 
