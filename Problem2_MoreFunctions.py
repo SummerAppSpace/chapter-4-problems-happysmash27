@@ -52,6 +52,32 @@ def plot_quasars(marker='.', markersize=2, linestyle='none', color='black'):
 
 
 #plot_quasars()
-#plot_quasars(marker="H", linestyle="none", color=(0, 1, 1), markersize=5)
-
-#help(matplotlib.markers)
+if __name__=='__main__':
+    import sys
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--marker", type=str, help="Sets the marker type")
+    parser.add_argument("--markersize", type=str, help="Sets the marker size")
+    parser.add_argument("--linestyle", type=str, help="Sets the line style")
+    parser.add_argument("--color", type=str, help="Sets the color")
+    parser.add_argument("--markers", action="store_true", help="Shows options for markers")
+    args=parser.parse_args()
+    if args.markers:
+        help(matplotlib.markers)
+    if args.marker:
+        marker = args.marker
+    else:
+        marker = '.'
+    if args.markersize:
+        markersize = args.markersize
+    else:
+        markersize = 2
+    if args.linestyle:
+        linestyle = args.linestyle
+    else:
+        linestyle = 'none'
+    if args.color:
+        color = args.color
+    else:
+        color = 'black'
+    plot_quasars(marker=marker, markersize=markersize, linestyle=linestyle, color=color)
